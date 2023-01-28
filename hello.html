@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <canvas width="600" height="600"></canvas>
+
+    <script>
+      let canvas = document.querySelector("canvas");
+      let context = canvas.getContext("2d"); // this is where we'll do the drawing
+
+      // context.fillStyle = 'pink'
+      // context.fillRect(100, 100, 400, 400); // x, y, width, height
+      // 0,0 (x,y) é onde começa a área de desenho do canvas (no topo esquerdo da tela). Andamos, 100px pra direita e 100px pra baixo, e dali criamos uma forma de 400x400px
+      // fillRect é um atalho pra criar uma forma, pois preenche de cor e dá as coordenadas ao mesmo tempo. Pra criar uma forma mais detalhada, é preciso ser mais verboso, como abaixo:
+
+      context.lineWidth = 4;
+      context.beginPath();
+      context.rect(100, 100, 400, 400);
+      // context.stroke();
+
+      context.beginPath();
+      context.arc(300, 300, 100, 0, Math.PI * 2); // x, y, r, sAngle (start), eAngle (ending)
+      // context.stroke()
+
+      const width = 60;
+      const height = 60;
+      const gap = 20;
+
+      for (let i = 0; i < 5; i++) {
+        for (let j = 0; j < 5; j++) {
+          let x = 100 + (width + gap) * i;
+          let y = 100 + (width + gap) * j;
+
+          context.beginPath();
+          context.rect(x, y, width, height);
+          context.stroke();
+
+          if (Math.random() > 0.5) {
+            context.beginPath();
+            context.fillStyle = "blue";
+            context.fillRect(x + 8, y + 8, width - 16, height - 16);
+            context.stroke();
+          }
+        }
+      }
+    </script>
+  </body>
+</html>
